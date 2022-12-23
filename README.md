@@ -4,8 +4,16 @@ My name is Mudit Agrawal and I am a current student at Duke University studying 
 This repository includes some of my personal projects that I have worked on so far! 
 
 # Energy Model
-This is a model of an Electric Water Heater that I created that shows two outputs -- temperature over time as a result of desired flow rate, and power required to provide this flow rate to the user. There are a couple of assumptions that I have taken into account with this model that help with the simplification without a detriment to the accuracy as a whole. I incorporated thermodynamic equations and the general premise revolves around the heat balance equation as well as heat equilibrium. The entire model is based around this heat balance equation and on a large level essentially states that Energy In = Energy Out with a lot of intermediate steps. The constants at the top allow the user to experiment with different power limits for the heating element. There is currently a default array corresponding to average or normal water usage over the course of a day in L/s. 
+This is a model of an Electric Water Heater that I created. The code defines a function called water_heater_power that takes in an array of water usage data, represented in liters per second. The function first initializes two arrays: T_array, which will store the water temperature in the heater over time, and heater_power, which will store the power output of the water heater at each time step. The initial value of T_array is set to the thermostat temperature.
+
+The function then iterates through the water usage data, using a series of equations to calculate the temperature and power output of the water heater at each time step. The power output is constrained to a maximum value of 3000 W, and the water temperature is constrained to not exceed the thermostat temperature. The final values of the two arrays are then returned in a dictionary.
 
 # Clustering Algorithm using K_Means
 
-This is a project I worked on over the summer that takes an input of arrays and points and creates a clustering graph based off of user inputted locations and shapes. It utilizes libraries such as NumPy, matplotlib and others. Essentially, the user is able to input the noise level as a sigma value ranging from 0 - 1, as well as the shape that they want the clusters to take as coordinate values. The output of the code is a graph that shows the visual clusters as well as an array holding k-means values that are useful for clustering and analysis purposes. 
+The code begins by importing several libraries, including numpy, matplotlib, and sklearn.cluster. It then defines a number of variables and lists, including the number of points per cluster (n), the number of clusters (n_clusters), the coordinates for the centers of the clusters (xlist and ylist), and the standard deviation of the Gaussian distribution (sigma).
+
+Next, the code generates a set of points by sampling from the Gaussian distribution centered at each of the coordinates in xlist and ylist. These points are stored in a 2D array called point_coords, along with their corresponding original cluster labels in the array orig_cluster.
+
+The K-Means model is then fit to the set of points in point_coords. The model is used to predict the cluster labels for the points [0, 0] and [12, 3], which are stored in the variable Y. The centers of the clusters found by the model are also computed and stored in the variable Z.
+
+The predicted cluster labels for each point are then plotted on a graph using matplotlib, with each point colored according to its predicted cluster label. The original and predicted cluster labels are also printed for comparison.
