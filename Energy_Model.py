@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 TANK_VOLUME = 0.17 # m^3
 TANK_MASS = TANK_VOLUME * 1000000
@@ -13,6 +14,8 @@ FINAL_WATER_TEMP = 54.4 #degC  (value based off of reccomendation of the Departm
 T_THERMOSTAT = 54.4 
 TOTAL_HEAT_LOSS_DAY = (((FINAL_WATER_TEMP - AMBIENT_AIR_TEMP) * TANK_AREA_LOSS * HEAT_LOSSES_COEFF) *3600 * 24)
 MAXIMUM_CAPACITY = 3000 #w
+t = np.linspace(0,23,24)
+t1 = np.linspace(0,24,25)
 
 def water_heater_power(water_usage: np.ndarray): # Hot water volumetric flow rate in L/s
       T_array = np.zeros(25) #adjusted heating values due to thermostat
@@ -32,11 +35,28 @@ def water_heater_power(water_usage: np.ndarray): # Hot water volumetric flow rat
                     heater_power[i-1] = ((((T_array[i] - T_array[i-1]) * 0.5) * TANK_MASS * SPECIFIC_HEAT_WATER) + 
                     (water_usage[i-1] * 1000 * (((T_array[i] + T_array[i-1]) * 0.5) - 10) * SPECIFIC_HEAT_WATER * 3600) + 
                     ((((T_array[i] + T_array[i-1]) * 0.5) - AMBIENT_AIR_TEMP) * TANK_AREA_LOSS * HEAT_LOSSES_COEFF)) / (3600)
-      final_dictionary = {"heater power array": heater_power, "Temperature over time array": T_array}
+      #final_dictionary = {"heater power array": heater_power, "Temperature over time array": T_array}
 
-      return("Heater Power Array is" , heater_power, "Temperature Over Time Array is" , T_array)
+      return heater_power , T_array
 
-print(water_heater_power(np.array([0]*3+[0.0378]*2+[0]*11+[0.0189]*6+[0]*2)))
+ideal = (water_heater_power(np.array([0]*3+[0.0378]*2+[0]*11+[0.0189]*6+[0]*2)))
+print(ideal)
+
+
+fig1 = plt.figure(num=1, clear=True)
+ax1 = fig1.add_subplot(1, 1,1)
+ax1.plot(t, ideal[0])
+ax1.set(xlabel = "Time", ylabel = "Heater Power", title = "Heater Power over Time")
+ax1.grid(True)
+
+#Plotting error for Range Kunta Method
+fig2 = plt.figure(num=2, clear=True)
+ax2 = fig2.add_subplot(1,1,1)
+ax2.plot(t1, ideal[1])
+ax2.set(xlabel = "Time (hours)", ylabel = "Temperature", title = "Temperature over Time")
+ax2.grid(True)
+
+plt.show()
 
 
 
