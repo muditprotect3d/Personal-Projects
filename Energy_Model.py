@@ -1,4 +1,3 @@
-
 import numpy as np
 
 TANK_VOLUME = 0.17 # m^3
@@ -38,6 +37,7 @@ def water_heater_power(water_usage: np.ndarray): # Hot water volumetric flow rat
       return("Heater Power Array is" , heater_power, "Temperature Over Time Array is" , T_array)
 
 print(water_heater_power(np.array([0]*3+[0.0378]*2+[0]*11+[0.0189]*6+[0]*2)))
+
 
 
 
