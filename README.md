@@ -8,6 +8,8 @@ This is a model of an Electric Water Heater that I created. The code defines a f
 
 The function then iterates through the water usage data, using a series of equations to calculate the temperature and power output of the water heater at each time step. The power output is constrained to a maximum value of 3000 W, and the water temperature is constrained to not exceed the thermostat temperature. The final values of the two arrays are then returned in a dictionary.
 
+To view the visuals, see the heaterpower.png and temperature.png graphs on the main page! These show the graphs produced for the heater power required over time over a 24 hour interval given some water usage array, and the temperature over time of the water coming out of the water heater over a 24 hour interval.
+
 # Clustering Algorithm using K_Means
 
 The code begins by importing several libraries, including numpy, matplotlib, and sklearn.cluster. It then defines a number of variables and lists, including the number of points per cluster (n), the number of clusters (n_clusters), the coordinates for the centers of the clusters (xlist and ylist), and the standard deviation of the Gaussian distribution (sigma).
