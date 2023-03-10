@@ -48,6 +48,7 @@ ax1 = fig1.add_subplot(1, 1,1)
 ax1.plot(t, ideal[0])
 ax1.set(xlabel = "Time", ylabel = "Heater Power", title = "Heater Power over Time")
 ax1.grid(True)
+fig1.savefig("heaterpower.png")
 
 #Plotting error for Range Kunta Method
 fig2 = plt.figure(num=2, clear=True)
@@ -55,6 +56,7 @@ ax2 = fig2.add_subplot(1,1,1)
 ax2.plot(t1, ideal[1])
 ax2.set(xlabel = "Time (hours)", ylabel = "Temperature", title = "Temperature over Time")
 ax2.grid(True)
+fig2.savefig("temperature.png")
 
 plt.show()
 
